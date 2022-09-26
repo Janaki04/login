@@ -10,21 +10,15 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-
-
 function Signin() {
 
-
   const navigate = useNavigate();
-
 
 const[details,setDetails]=useState({
   email:"",
   password:""
 
 })
-
-
 
 const changeHandle=(e)=>{
   setDetails({
@@ -39,20 +33,12 @@ const {email, password} = details;
 const newDetails = {"emp_id" : parseInt(email) ,"password" : password}
 // console.log(newDetails)
 axios.post("https://empappregular.herokuapp.com/login",newDetails)
-.then((res)=>{alert(res.data)
+.then((res)=>{alert("login sucessfully")
 sessionStorage.setItem('token', JSON.stringify(res.data.token))
 sessionStorage.setItem('user', JSON.stringify(res.data.user))
-navigate('/Dashboard')
+navigate('/form')
 })
-
 }
-
-
-
-
-
-
-
 
 return (
     <div>

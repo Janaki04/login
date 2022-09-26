@@ -4,7 +4,7 @@ import './style.css'
 
 const Dashboard = () => {
 
-const[post, setPost]=useState([])
+const[post, setPost]=useState('')
 
 const [create,setCreate]=useState({
   login: true,
@@ -13,15 +13,17 @@ const [create,setCreate]=useState({
   subtitle: "",
 })
 
-useEffect(()=>{
+  useEffect(()=>{
   axios.get("https://empappregular.herokuapp.com/getAllPosts")
   .then((res)=>{
     
   setPost(Object.values(res.data))
-  console.log(res.data)
- 
-  })
+  
+ })
   },[])
+
+
+console.log(post)
 
   const changeHandler=(e)=>{
     setCreate({
@@ -35,16 +37,14 @@ useEffect(()=>{
     console.log(create)
    const newCreate = {"title" : title,"subtitle" : subtitle ,"about" : about}
    console.log(newCreate)
-   axios.post("https://empappregular.herokuapp.com/createPost",JSON.stringify(newCreate),{
+   axios.post("https://empappregular.herokuapp.com/createPost",newCreate,{
     headers:{
-      "token" : JSON.parse(sessionStorage.getItem("token"))
+      "token" : JSON.parse( sessionStorage.getItem("token"))
     }
    })
   .then((res)=>alert("posted"))  
+  setCreate({login:true})
   }
-
-
-
 
 return (
    <div>
@@ -52,35 +52,28 @@ return (
       <div>
       <h1>ALL POSTS</h1>
       <button className='button' onClick={()=>setCreate({login:false})}>Create Post</button>
-      {post.map((value,index)=>
-      <p className='block' key={index}>TITLE:{value.title}<br/>SUBTITLE:{value.subtitle}<br/>ABOUT:{value.about}</p>)}
+      {post.map((post,index)=>
+      <p className='block' >TITLE:{post.title}<br/>SUBTITLE:{post.subtitle}<br/>ABOUT:{post.about}</p>)}
     </div>
      ):
      
-     (
+(
 <div>
   <form style={{marginTop:30}} onSubmit={submitHandler}>
   <label>Title:-</label>
   <textarea type="text" name="title"  onChange={changeHandler}/>
-  
   <br/>
   <label> Subtitle:-</label>
-  <textarea type="text" name="sutitle" onChange={changeHandler}/><br/>
+  <textarea type="text" name="subtitle" onChange={changeHandler}/><br/>
   <label>About:-</label>
   <textarea type="text" name="about" onChange={changeHandler}/><br/>
   <button>Submit</button>
 </form>
-
-
 </div>
      )
     }
-
-
-
-   </div>
-    
-  )
+</div>
+)
 }
 
 export default Dashboard

@@ -10,18 +10,14 @@
    
 }
 
-
-
-
-
-
 @media screen and (max-width: 500px) {
    #img{
     display: none;
    } 
-  }
-  .block{
+    .block{
    height: auto;
    width: 250px;
-   margin-left: 30px;
+   margin-left: 50px;
   }
+  }
+ 

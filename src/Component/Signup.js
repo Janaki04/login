@@ -59,7 +59,7 @@ return (
        <input style={{height:40,borderRadius:8,width:250}} type="number" name="number"  placeholder="Enter your Number" onChange={handleChange}/><br/><br/>
        <input style={{height:40,borderRadius:8,width:250}} type="password" name="password"  placeholder=" Password" onChange={handleChange}/> <br/><br/>
       <input  style={{height:40,borderRadius:8,width:250}} type="password" name="confirm password"  placeholder=" Confirm Password" onChange={handleChange}/> <br/><br/>
-       <button style={{height:40,borderRadius:8,width:250}} className="btn btn-primary">Register Here</button>
+      <button style={{height:40,borderRadius:8,width:250}} className="btn btn-primary">Register Here</button>
       </form>
 
       <h6>or continue with</h6>
