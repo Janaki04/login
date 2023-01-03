@@ -13,7 +13,6 @@ function Signup() {
   const[data,setData]=useState({
     email:"",
     name:"",
-    number:"",
     password:""
   })
 
@@ -30,7 +29,7 @@ function Signup() {
         const {email, password, name} = data;
         console.log(data)
        const newData = {"emp_id" : email,"name" : name ,"password" : password}
-       axios.post("https://empappregular.herokuapp.com/signUp",newData)
+       axios.post("https://empappregular.herokuapp.com/SignUp",newData)
       .then((res)=>alert("data posted"))  
       }
 
